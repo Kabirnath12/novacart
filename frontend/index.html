@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-powered semantic e-commerce storefront">
+  <title>NovaCart — Smart Shopping</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#">NovaCart</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+      <nav id="mainNav">
+        <a href="#products">Products</a>
+        <a href="#categories">Categories</a>
+        <a href="#account">Account</a>
+        <button class="cart-button" id="cartButton">Cart <span id="cartCount">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <p class="eyebrow">SMARTER SHOPPING</p>
+        <h1>Find products by what you mean.</h1>
+        <p class="hero-copy">Search naturally, discover relevant products, and manage your cart from one modern storefront.</p>
+        <form class="search-bar" id="searchForm">
+          <input id="searchInput" type="search" placeholder="Try “comfortable shoes for daily walking”" autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+        <div class="search-hints">
+          <button class="hint" data-query="comfortable shoes for daily walking">Walking shoes</button>
+          <button class="hint" data-query="wireless headphones for travel">Travel audio</button>
+          <button class="hint" data-query="minimal desk setup">Desk setup</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EXPLORE</p>
+            <h2>Shop by category</h2>
+          </div>
+          <span id="resultSummary"></span>
+        </div>
+        <div class="category-row" id="categoryRow"></div>
+      </div>
+    </section>
+
+    <section class="section products-section" id="products">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CATALOGUE</p>
+            <h2>Products</h2>
+          </div>
+          <select id="sortSelect" aria-label="Sort products">
+            <option value="relevance">Sort: Relevance</option>
+            <option value="price-low">Price: Low to high</option>
+            <option value="price-high">Price: High to low</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </div>
+        <div id="status" class="status">Loading products...</div>
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="section account-section" id="account">
+      <div class="container account-card">
+        <div>
+          <p class="eyebrow">YOUR ACCOUNT</p>
+          <h2>Sign in to keep your shopping history together.</h2>
+          <p>Create an account or sign in to view orders and personalized recommendations.</p>
+        </div>
+        <div class="account-actions">
+          <button class="primary" id="loginButton">Sign in</button>
+          <button class="secondary" id="registerButton">Create account</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop hidden" id="productModal">
+    <div class="modal">
+      <button class="modal-close" data-close="productModal">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="authModal">
+    <div class="modal auth-modal">
+      <button class="modal-close" data-close="authModal">×</button>
+      <p class="eyebrow" id="authEyebrow">ACCOUNT</p>
+      <h2 id="authTitle">Sign in</h2>
+      <form id="authForm">
+        <input id="authName" class="auth-name" type="text" placeholder="Full name">
+        <input id="authEmail" type="email" placeholder="Email" required>
+        <input id="authPassword" type="password" placeholder="Password" minlength="6" required>
+        <button class="primary" type="submit">Continue</button>
+      </form>
+      <p class="form-message" id="authMessage"></p>
+    </div>
+  </div>
+
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h2>Your cart</h2>
+      <button id="closeCart">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+      <button class="primary full" id="checkoutButton">Place order</button>
+      <p class="form-message" id="checkoutMessage"></p>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
