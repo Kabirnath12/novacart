@@ -25,7 +25,7 @@ const cartCount = document.getElementById("cartCount");
 
 async function loadProducts() {
   try {
-    const response = await fetch(`${API_BASE}/products`);
+    const response = await fetch(`${API}/products`);
     if (!response.ok) throw new Error("API error");
     products = await response.json();
   } catch {
@@ -174,7 +174,7 @@ async function submitAuth(event) {
   const endpoint = authMode === "register" ? "/auth/register" : "/auth/login";
   const message = document.getElementById("authMessage");
   try {
-    const response = await fetch(`${API_BASE}${endpoint}`, {
+    const response = await fetch(`${API}${endpoint}`, {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(payload)
@@ -204,7 +204,7 @@ async function checkout() {
   const items = cart.map(item => ({productId:item.id, quantity:item.quantity}));
   const message = document.getElementById("checkoutMessage");
   try {
-    const response = await fetch(`${API_BASE}/orders`, {
+    const response = await fetch(`${API}/orders`, {
       method:"POST",
       headers:{"Content-Type":"application/json","Authorization":`Bearer ${token}`},
       body:JSON.stringify({items})
