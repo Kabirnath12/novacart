@@ -1,4 +1,4 @@
-const API="https://novacart-backend-7lgx.onrender.com/api";
+const API_BASE="https://novacart-backend-7lgx.onrender.com/api";;
 
 const fallbackProducts = [
   {id:"p1",name:"Everyday Walking Shoes",category:"Fashion",price:2499,rating:4.7,description:"Cushioned everyday shoes designed for comfortable walking.",image:"assets/shoes.svg"},
@@ -25,7 +25,7 @@ const cartCount = document.getElementById("cartCount");
 
 async function loadProducts() {
   try {
-    const response = await fetch(`${API}/products`);
+    const response = await fetch(`${API_BASE}/products`);
     if (!response.ok) throw new Error("API error");
     products = await response.json();
   } catch {
@@ -174,7 +174,7 @@ async function submitAuth(event) {
   const endpoint = authMode === "register" ? "/auth/register" : "/auth/login";
   const message = document.getElementById("authMessage");
   try {
-    const response = await fetch(`${API}${endpoint}`, {
+    const response = await fetch(`${API_BASE}${endpoint}`, {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify(payload)
@@ -204,7 +204,7 @@ async function checkout() {
   const items = cart.map(item => ({productId:item.id, quantity:item.quantity}));
   const message = document.getElementById("checkoutMessage");
   try {
-    const response = await fetch(`${API}/orders`, {
+    const response = await fetch(`${API_BASE}/orders`, {
       method:"POST",
       headers:{"Content-Type":"application/json","Authorization":`Bearer ${token}`},
       body:JSON.stringify({items})
