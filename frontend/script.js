@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api";
+const API="https://novacart-backend-7lgx.onrender.com/api";
 
 const fallbackProducts = [
   {id:"p1",name:"Everyday Walking Shoes",category:"Fashion",price:2499,rating:4.7,description:"Cushioned everyday shoes designed for comfortable walking.",image:"assets/shoes.svg"},
